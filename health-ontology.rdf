@@ -90,20 +90,12 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasFoodType -->
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasFoodType">
-        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient">
         <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
         <rdfs:comment>Describes the ingredient quantity of some ingredient for one serving of the dish.</rdfs:comment>
     </owl:ObjectProperty>
     
@@ -165,6 +157,14 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
         <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldBeEatenBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldBeEatenBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
     </owl:ObjectProperty>
     
 
@@ -409,6 +409,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Beef50g">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Beef"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#containedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#PastaBolognese"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
@@ -695,6 +701,106 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#ChickenCurry">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Chicken100g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#CoconutMilk90g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Onion50g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Rice75g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Chicken100g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#CoconutMilk90g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Onion50g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Rice75g"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasCalories"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">350</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">350</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasCalories"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">350</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">350</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ramen"/>
     </owl:Class>
     
 
@@ -797,14 +903,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Cold -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Cold">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Core -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Core">
@@ -817,12 +915,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#CowsMilk">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
@@ -839,12 +931,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSwap"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#SoyMilk"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -900,6 +986,35 @@
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
                     <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dizzy"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fever"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dizzy"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fever"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
                         <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
                     </owl:Restriction>
@@ -935,55 +1050,14 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Egg -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Egg">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#EggAllergy -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#EggAllergy">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#EggNoodles -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#EggNoodles">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Egg"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Gluten"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSwap"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#RiceNoodles"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:allValuesFrom>
-                    <owl:Class>
-                        <owl:unionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Egg"/>
-                            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Gluten"/>
-                        </owl:unionOf>
-                    </owl:Class>
-                </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1100,12 +1174,6 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
             </owl:Restriction>
@@ -1114,12 +1182,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#SaturatedFat"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1159,6 +1221,139 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#FieldHockey">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fracture"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#JointSprain"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fracture"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#JointSprain"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Arms"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Core"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Legs"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Arms"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Core"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Legs"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#burnsCaloriesPerHour"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">500</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">500</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#burnsCaloriesPerHour"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">500</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">500</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Soccer"/>
     </owl:Class>
     
@@ -1168,6 +1363,20 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fracture">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#FieldHockey"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#FieldHockey"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1225,22 +1434,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Gluten -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Gluten">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#GlutenAllergy -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#GlutenAllergy">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#GlutenFreePasta -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#GlutenFreePasta">
@@ -1259,14 +1452,6 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#NonSugarCarb"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#GreekSalad -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#GreekSalad">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
     </owl:Class>
     
 
@@ -1317,6 +1502,86 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HighCholesterol">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#FieldHockey"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Soccer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Walking"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#WeightLifting"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#SaturatedFat"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#SaturatedFat"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Apple"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Cucumber"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Feta"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Olive"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tomato"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldNotEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Butter"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldNotEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#EggNoodles"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldNotEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Oil"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1334,6 +1599,50 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Influenza">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Walking"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Walking"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Beef"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Chicken"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#CoconutMilk"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mushroom"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Onion"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Rice"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1357,6 +1666,20 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition"/>
         <rdfs:subClassOf>
             <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pain"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pain"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
                 <owl:complementOf>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform"/>
@@ -1373,14 +1696,20 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#JointSprain">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Koshari -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Koshari">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#FieldHockey"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Soccer"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1389,6 +1718,20 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggersAllergy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#LactoseAllergy"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggersAllergy"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#LactoseAllergy"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1397,6 +1740,20 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#LactoseAllergy">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggeredByAllergen"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggeredByAllergen"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1444,14 +1801,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Leukemia -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Leukemia">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean">
@@ -1464,6 +1813,20 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrain">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#WeightLifting"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#WeightLifting"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1472,6 +1835,20 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrength">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#WeightLifting"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#WeightLifting"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina"/>
     </owl:Class>
     
@@ -1481,6 +1858,70 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mushroom">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">75</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">75</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">75</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">75</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
@@ -1584,14 +2025,70 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Onion50g">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Onion"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Paella -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Paella">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">50</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">50</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">50</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">50</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1600,6 +2097,36 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pain">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#symptomOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fracture"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#symptomOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#JointSprain"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#symptomOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrain"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#symptomOf"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fracture"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#JointSprain"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrain"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1610,20 +2137,8 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Gluten"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSwap"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#GlutenFreePasta"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
-                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Gluten"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1646,6 +2161,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pasta75g">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pasta"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#containedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#PastaBolognese"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
@@ -1716,6 +2237,98 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#PastaBolognese">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Beef50g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pasta75g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tomato83g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Beef50g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pasta75g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tomato83g"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasCalories"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdfs:Datatype>
+                                <owl:datatypeComplementOf>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">335</xsd:minExclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:datatypeComplementOf>
+                            </rdfs:Datatype>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">335</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:intersectionOf>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasCalories"/>
+                <owl:allValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdfs:Datatype>
+                                <owl:datatypeComplementOf>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">335</xsd:minExclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:datatypeComplementOf>
+                            </rdfs:Datatype>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">335</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:intersectionOf>
+                    </rdfs:Datatype>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1725,6 +2338,12 @@
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pear">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fruit"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Person"/>
     
 
 
@@ -1754,6 +2373,72 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ramen">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Carrot75g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#EggNoodles75g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mushroom75g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tofu33g"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Carrot75g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#EggNoodles75g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mushroom75g"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tofu33g"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasCalories"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdfs:Datatype>
+                                <owl:datatypeComplementOf>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">200</xsd:minExclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:datatypeComplementOf>
+                            </rdfs:Datatype>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">200</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:intersectionOf>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1938,14 +2623,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Running -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Running">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Salt -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Salt">
@@ -1958,6 +2635,20 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#SaturatedFat">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fat"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HighCholesterol"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HighCholesterol"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#UnsaturatedFat"/>
     </owl:Class>
     
@@ -2010,18 +2701,127 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#SkinRash -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#SkinRash">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Soccer -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Soccer">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#JointSprain"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#JointSprain"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Core"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Legs"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Core"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Legs"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#burnsCaloriesPerHour"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">400</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">400</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#burnsCaloriesPerHour"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">400</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">400</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2116,6 +2916,42 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#FieldHockey"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Soccer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Walking"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy"/>
+                        <owl:allValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#FieldHockey"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Soccer"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Walking"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Beef"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2124,14 +2960,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sugar">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Carb"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Sushi -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sushi">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
     </owl:Class>
     
 
@@ -2191,14 +3019,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Tagine -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tagine">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport">
@@ -2225,6 +3045,68 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tofu33g">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tofu"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdfs:Datatype>
+                                <owl:datatypeComplementOf>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">33</xsd:minExclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:datatypeComplementOf>
+                            </rdfs:Datatype>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">33</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:intersectionOf>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                <owl:allValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdfs:Datatype>
+                                <owl:datatypeComplementOf>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">33</xsd:minExclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:datatypeComplementOf>
+                            </rdfs:Datatype>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">33</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:intersectionOf>
+                    </rdfs:Datatype>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2247,6 +3129,76 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tomato83g">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tomato"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">83</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">83</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams"/>
+                        <owl:allValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdfs:Datatype>
+                                        <owl:datatypeComplementOf>
+                                            <rdfs:Datatype>
+                                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                                <owl:withRestrictions rdf:parseType="Collection">
+                                                    <rdf:Description>
+                                                        <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">83</xsd:minExclusive>
+                                                    </rdf:Description>
+                                                </owl:withRestrictions>
+                                            </rdfs:Datatype>
+                                        </owl:datatypeComplementOf>
+                                    </rdfs:Datatype>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">83</xsd:minInclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:intersectionOf>
+                            </rdfs:Datatype>
+                        </owl:allValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#containedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#PastaBolognese"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2291,6 +3243,34 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Walking">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#decreasesNutrient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#NonSugarCarb"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#decreasesNutrient"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#NonSugarCarb"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Stamina"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2299,7 +3279,126 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#WeightLifting">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrain"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrain"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#decreasesNutrient"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#decreasesNutrient"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrength"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#MuscleStrength"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#burnsCaloriesPerHour"/>
+                <owl:someValuesFrom>
+                    <rdfs:Datatype>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdfs:Datatype>
+                                <owl:datatypeComplementOf>
+                                    <rdfs:Datatype>
+                                        <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                        <owl:withRestrictions rdf:parseType="Collection">
+                                            <rdf:Description>
+                                                <xsd:minExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">500</xsd:minExclusive>
+                                            </rdf:Description>
+                                        </owl:withRestrictions>
+                                    </rdfs:Datatype>
+                                </owl:datatypeComplementOf>
+                            </rdfs:Datatype>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">500</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:intersectionOf>
+                    </rdfs:Datatype>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#beef -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Beef50g"/>
+        <ontology:contains rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#high_cholesterol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#high_cholesterol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HighCholesterol"/>
+        <ontology:mightBeCausedBy rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta_bolognese -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta_bolognese">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#PastaBolognese"/>
+        <ontology:contains rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#SaturatedFat"/>
+    </owl:NamedIndividual>
     
 
 
@@ -2320,6 +3419,18 @@
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#ProteinRich"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -2367,14 +3478,6 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#ChickenCurry"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ramen"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sushi"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Chickpea"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#GreenPea"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lentil"/>
@@ -2392,44 +3495,10 @@
     <rdf:Description>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
         <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Cold"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HighCholesterol"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Influenza"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Leukemia"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dizzy"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fever"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Pain"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#SkinRash"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Egg"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Gluten"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Lactose"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#EggAllergy"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#GlutenAllergy"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#LactoseAllergy"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -2451,22 +3520,12 @@
         </owl:members>
     </rdf:Description>
     <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#GreekSalad"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Koshari"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Paella"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#PastaBolognese"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Tagine"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Running"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Walking"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#WeightLifting"/>
-        </owl:members>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta_bolognese"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+        </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
 
