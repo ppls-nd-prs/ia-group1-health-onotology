@@ -1,0 +1,1883 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/uu/ia/group1/health/ontology/"
+     xml:base="http://www.semanticweb.org/uu/ia/group1/health/ontology/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ontology="http://www.semanticweb.org/uu/ia/group1/health/ontology#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#canPerform">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#cannotPerform -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#cannotPerform">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#containedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#containedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#decreasesNutrient -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#decreasesNutrient">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasFoodType -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasFoodType">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasIngredient">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <rdfs:comment>Describes the ingredient quantity of some ingredient for one serving of the dish.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#contains"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+        <rdfs:comment>Describes the nutrients which occur in high values in a specific food (i.e. which nutrients it’s a source of).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSwap -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSwap">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:comment>Describes which ingredients could be swapped out for each other in a dish.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasSymptom">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#symptomOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldNotEat -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldNotEat">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#symptomOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#symptomOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#triggeredByAllergen -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggeredByAllergen">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggersAllergy"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#triggersAllergy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggersAllergy">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#usesBodyParts">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#burnsCaloriesPerHour -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#burnsCaloriesPerHour">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Describes the amount of calories burn by sport per hour.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAmount -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAmount">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasCalories -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasCalories">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Describes the number of calories in a single serving.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasGrams">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAmount"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Describes the quantity in grams.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNumber -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNumber">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAmount"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:comment>Describes the quantity in number of pieces.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggersAllergy"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldNotEat"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAllergen"/>
+                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#triggeredByAllergen"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts"/>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Carb -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Carb">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shouldEat"/>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Fat -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fat">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Fruit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fruit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#sugar"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#non_sugar_carb"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Health -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mightBeCausedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasFoodType"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasAmount"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cannotPerform"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cannotPerform"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cannotPerform"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cannotPerform"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cannotPerform"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#protein"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#canCause"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
+                        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#hasNutrient"/>
+                <owl:hasValue rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#apple -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#apple">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fruit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#arms -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#arms">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#beef -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#beef50g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef50g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#butter -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#butter">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot15g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot15g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot75g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot75g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken100g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken100g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken150g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken150g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken_curry -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken_curry">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken100g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk90g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion50g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">350</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea92g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea92g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">92</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk90g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk90g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">90</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#cold -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#cold">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#eggplant"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice_noodles"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#core -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#core">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber150g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber150g">
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">150</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+        <ontology:symptomOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cold"/>
+        <ontology:symptomOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#influenza"/>
+        <ontology:symptomOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#leukemia"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#egg -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+        <ontology:triggersAllergy rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_allergy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_allergy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_allergy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#skin_rash"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
+        <ontology:hasAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg"/>
+        <ontology:hasAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten"/>
+        <ontology:hasSwap rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice_noodles"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles133g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles133g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">133</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles75g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles75g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#eggplant -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#eggplant">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#feta -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#feta">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy"/>
+        <ontology:hasAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#protein"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#feta33g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#feta33g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#feta"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">33</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#fever -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#fever">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+        <ontology:symptomOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cold"/>
+        <ontology:symptomOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#influenza"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fracture"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain"/>
+        <ontology:promotes rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#stamina"/>
+        <ontology:usesBodyParts rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#arms"/>
+        <ontology:usesBodyParts rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#core"/>
+        <ontology:usesBodyParts rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#legs"/>
+        <ontology:burnsCaloriesPerHour rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">500</ontology:burnsCaloriesPerHour>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#fracture -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#fracture">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#pain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#gf_pasta -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#gf_pasta">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+        <ontology:triggersAllergy rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten_allergy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten_allergy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten_allergy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#skin_rash"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#granulated_sugar -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#granulated_sugar">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#sugar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#greek_salad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#greek_salad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber150g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#feta33g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive10g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato50g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">175</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea32g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea32g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#high_cholesterol -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#high_cholesterol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
+        <ontology:mightBeCausedBy rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#apple"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#feta"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#influenza -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#influenza">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#pain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#koshari -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#koshari">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea92g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles75g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil40g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion45g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">180</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+        <ontology:triggersAllergy rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose_allergy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose_allergy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose_allergy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#legs -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#legs">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil40g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil40g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">40</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#leukemia -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#leukemia">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
+        <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
+        <ontology:cannotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#milk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#milk">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy"/>
+        <ontology:hasAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#protein"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+        <ontology:hasSwap rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_milk"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strain -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strain">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Injury"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#pain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strength -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strength">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom75g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom75g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#non_sugar_carb -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#non_sugar_carb">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Carb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#oil -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#oil">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#unsaturated_fat"/>
+        <ontology:hasSwap rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#butter"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#oil20g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#oil20g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#oil"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">20</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#olive -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#salt"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#olive10g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive10g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#onion -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#onion45g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion45g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">45</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#onion50g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion50g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#onion60g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion60g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">60</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#paella -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#paella">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken100g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea32g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#oil20g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp75g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato67g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">340</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#pain -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pain">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
+        <ontology:hasAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten"/>
+        <ontology:hasSwap rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#gf_pasta"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta75g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta75g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta_bolognese -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta_bolognese">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef50g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta75g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato83g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">335</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#pear -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pear">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fruit"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#protein -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#protein">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#ramen -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#ramen">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot75g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles133g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom75g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu33g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">200</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#rice -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#rice_noodles -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice_noodles">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Grain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#running -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#running">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain"/>
+        <ontology:decreasesNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#non_sugar_carb"/>
+        <ontology:burnsCaloriesPerHour rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">750</ontology:burnsCaloriesPerHour>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#salt -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#salt">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed10g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed10g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#unsaturated_fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp75g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp75g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#skin_rash -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#skin_rash">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain"/>
+        <ontology:promotes rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#stamina"/>
+        <ontology:usesBodyParts rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#core"/>
+        <ontology:usesBodyParts rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#legs"/>
+        <ontology:burnsCaloriesPerHour rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">400</ontology:burnsCaloriesPerHour>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_milk -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_milk">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dairy"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#protein"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#salt"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#sugar"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce35g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce35g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">35</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#stamina -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#stamina">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+        <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#sugar -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sugar">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Carb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#sushi -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sushi">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed10g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce35g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna75g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">300</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#non_sugar_carb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato25g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato25g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato"/>
+        <ontology:hasNumber rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1</ontology:hasNumber>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#table_salt -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#table_salt">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Additive"/>
+        <ontology:hasNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#salt"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tagine -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tagine">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot15g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken150g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea92g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#oil20g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion60g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato25g"/>
+        <ontology:hasIngredient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato160g"/>
+        <ontology:hasCalories rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">325</ontology:hasCalories>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu33g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu33g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">33</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Vegetable"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato160g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato160g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">160</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato50g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato50g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato67g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato67g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">67</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato83g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato83g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">83</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Protein"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna75g -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna75g">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+        <ontology:hasFoodType rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna"/>
+        <ontology:hasGrams rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">75</ontology:hasGrams>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#unsaturated_fat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#unsaturated_fat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Fat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#walking -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport"/>
+        <ontology:decreasesNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#non_sugar_carb"/>
+        <ontology:burnsCaloriesPerHour rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">300</ontology:burnsCaloriesPerHour>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting">
+        <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#IndividualSport"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strain"/>
+        <ontology:decreasesNutrient rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#protein"/>
+        <ontology:promotes rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strength"/>
+        <ontology:burnsCaloriesPerHour rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">500</ontology:burnsCaloriesPerHour>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergen"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#BodyParts"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Dish"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Health"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Ingredient"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#IngredientQuantity"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Disease"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthCondition"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#apple"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#arms"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef50g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#butter"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot15g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot75g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken100g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken150g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken_curry"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea92g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk90g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#cold"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#core"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#cucumber"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_allergy"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles133g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles75g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#eggplant"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#feta"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#feta33g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#fever"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#fracture"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#gf_pasta"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten_allergy"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#granulated_sugar"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#greek_salad"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#green_pea32g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#high_cholesterol"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#influenza"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#koshari"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose_allergy"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#legs"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lentil40g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#leukemia"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#milk"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strain"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#muscle_strength"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom75g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#non_sugar_carb"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#oil"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#oil20g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#olive10g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion45g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion50g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion60g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#paella"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pain"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta75g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta_bolognese"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pear"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#protein"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#ramen"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice_noodles"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#salt"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#saturated_fat"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#seaweed10g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#shrimp75g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#skin_rash"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_milk"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soy_sauce35g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#stamina"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sugar"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sushi"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#sweet_potato25g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#table_salt"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tagine"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu33g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato160g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato50g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato67g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato83g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#tuna75g"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#unsaturated_fat"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
