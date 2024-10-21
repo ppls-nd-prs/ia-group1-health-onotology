@@ -132,7 +132,7 @@
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#isPromotedBy">
         <owl:inverseOf rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#promotes"/>
         <rdfs:domain rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#HealthBenefit"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Nutrient"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Sport"/>
     </owl:ObjectProperty>
     
 
@@ -763,6 +763,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken_curry">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#chicken100g"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk90g"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#onion50g"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#rice75g"/>
     </owl:NamedIndividual>
     
 
@@ -851,6 +855,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#field_hockey">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fracture"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain"/>
+        <ontology:promotes rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#stamina"/>
     </owl:NamedIndividual>
     
 
@@ -1070,6 +1077,10 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#ramen">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Asian"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#carrot75g"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles75g"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#mushroom75g"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tofu33g"/>
     </owl:NamedIndividual>
     
 
@@ -1142,6 +1153,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#TeamSport"/>
+        <ontology:canCause rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#joint_sprain"/>
+        <ontology:promotes rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#stamina"/>
     </owl:NamedIndividual>
     
 
