@@ -1,2 +1,4 @@
-venv-ia/*
-_docs/*
+__pycache__
+venv-ia
+_docs
+.env

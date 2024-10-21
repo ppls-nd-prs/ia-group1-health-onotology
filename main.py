@@ -1,9 +1,9 @@
 from src.llm_check import llm_check_truth
-from src.ontology_check import ontology_check_truth
+from src.ontology_check import OntologyCheck
 from src.utils import IsTruth
 
 
-def sense_user_input():
+def sense_user_input() -> str:
     input("Press Enter to continue...")
     user_input = input("Enter your input: ")
     return user_input
@@ -52,4 +52,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    ontology = OntologyCheck()
+    is_true_ontology = ontology.ontology_check_truth("test")
+
+    # main()

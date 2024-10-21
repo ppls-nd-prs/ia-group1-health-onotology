@@ -1,24 +1,37 @@
-import owlready2
 from owlready2 import *
 
 from src.utils import IsTruth
 
 
-def ontology_check_truth(user_input: str) -> IsTruth:
-    onto = get_ontology("path/to/your/ontology.owl").load()
-    query = parse_natural_language_to_ontology_query(user_input)
-    results = query_ontology(query, onto)
-    return results
+class OntologyCheck:
+    def __init__(self):
+        my_world = World()
+        my_world.get_ontology("health-ontology.rdf").load()
+        sync_reasoner(my_world)  # reasoner is started and synchronized here
+        self.graph = my_world.as_rdflib_graph()
 
+    def ontology_check_truth(self, user_input: str) -> IsTruth:
 
-def parse_natural_language_to_ontology_query(user_input: str) -> dict:
-    pass
+        query = """
+                PREFIX : <http://www.semanticweb.org/uu/ia/group1/health/ontology#>
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                PREFIX owl: <http://www.w3.org/2002/07/owl#>
+                    SELECT ?x
+                    WHERE {
+                        ?x rdf:type/rdfs:subClassOf* :Sport .
+                        ?x :decreasesNutrient [ :containedBy :ramen ] .
+                    }
+                """
 
+        # Sport and decreasesNutrient some (containedBy value ramen)
 
-def create_explanation_from_ontology():
-    pass
+        resultsList = self.graph.query(query)
 
+        print(list(resultsList))
 
-def query_ontology(query: dict, onto: Ontology):
-    results = onto.search(**query)
-    return results
+    def parse_natural_language_to_ontology_query(self, user_input: str) -> dict:
+        pass
+
+    def create_explanation_from_ontology(self):
+        pass
