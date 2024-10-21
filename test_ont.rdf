@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23/"
+     xml:base="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:untitled-ontology-23="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#containedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#containedBy">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#contains"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#contains">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#decreasesNutrient -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#decreasesNutrient">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Sport"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Nutrient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#hasFood -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#hasFood">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#contains"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Recipe"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#hasNutrient -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#hasNutrient">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#contains"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Food"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Nutrient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Food -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Food"/>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Nutrient -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Nutrient"/>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Recipe -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Recipe"/>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Sport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Sport"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#carb -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#carb">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Nutrient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#pepper -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#pepper">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Food"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#protein -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#protein">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Nutrient"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#ramen -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#ramen">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Recipe"/>
+        <untitled-ontology-23:hasFood rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#pepper"/>
+        <untitled-ontology-23:hasFood rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#tofu"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#running -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#running">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Sport"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#tofu -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#tofu">
+        <untitled-ontology-23:hasNutrient rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#protein"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#weight_lifting -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#weight_lifting">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#Sport"/>
+        <untitled-ontology-23:decreasesNutrient rdf:resource="http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23#protein"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

@@ -6,21 +6,21 @@ from src.utils import IsTruth
 class OntologyCheck:
     def __init__(self):
         my_world = World()
-        my_world.get_ontology("health-ontology.rdf").load()
+        my_world.get_ontology("test_ont.rdf").load()
         sync_reasoner(my_world)  # reasoner is started and synchronized here
         self.graph = my_world.as_rdflib_graph()
 
     def ontology_check_truth(self, user_input: str) -> IsTruth:
 
         query = """
-                PREFIX : <http://www.semanticweb.org/uu/ia/group1/health/ontology#>
+                PREFIX : <http://www.semanticweb.org/jip/ontologies/2024/9/untitled-ontology-23/>
                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                 PREFIX owl: <http://www.w3.org/2002/07/owl#>
-                    SELECT ?x
+                    SELECT ?sport
                     WHERE {
-                        ?x rdf:type/rdfs:subClassOf* :Sport .
-                        ?x :decreasesNutrient [ :containedBy :ramen ] .
+                        ?sport rdf:type/rdfs:subClassOf :Sport .                           # Find instances of Sport
+                    
                     }
                 """
 
