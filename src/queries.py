@@ -1,113 +1,218 @@
-from typing import NamedTuple
+from utils import IsTruth
 
-query_answer_tuple = NamedTuple(
-    "query_answer_tuple",
-    [
-        ("query", str),
-        ("expected_answer", str | None),
-        ("any_answer", bool),
-        ("explanation", str),
-    ],
-)
+
+def run_query(ontology_graph, query: str) -> list:
+    full_query = f"""
+            PREFIX : <http://www.semanticweb.org/uu/ia/group1/health/ontology#>
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX owl: <http://www.w3.org/2002/07/owl#>
+                {query}
+            """
+    return list(ontology_graph.query_owlready(query))[0]
+
+
+def check_query(
+    result: list,
+    positive_explanation: str,
+    negative_explanation: str,
+    empty_answer: bool,
+    expected_answer: str | None = None,
+) -> IsTruth:
+    if expected_answer:  # check if expected answer is in results
+        for result in result:
+            if expected_answer in str(result):
+                return IsTruth(
+                    True,
+                    positive_explanation,
+                )
+        return IsTruth(
+            False,
+            negative_explanation,
+        )
+    if empty_answer:  # answer should be empty
+        if len(result) > 0:
+            return IsTruth(
+                False,
+                negative_explanation,
+            )
+        return IsTruth(
+            True,
+            positive_explanation,
+        )
+    if len(result) > 0:  # answer should not be empty
+        return IsTruth(
+            True,
+            positive_explanation,
+        )
+    return IsTruth(
+        False,
+        negative_explanation,
+    )
+
 
 # expected_answer: "answer" for should contain, None for empty list
 
-queries = {
-    "high_cholesterol_by_pasta": query_answer_tuple(
-        query="""
-        SELECT DISTINCT ?condition (:pasta_bolognese AS ?food) ?cause 
-        WHERE {
+
+def generic_query(
+    ontology_graph,
+    query: str,
+    positive_explanation: str,
+    negative_explanation: str,
+    empty_answer: bool,
+    expected_answer: str | None = None,
+):
+    result = run_query(ontology_graph, query)
+    formatted_positive_explanation = positive_explanation.format(*result)
+    formatted_negative_explanation = negative_explanation.format(*result)
+    return check_query(
+        result,
+        formatted_positive_explanation,
+        formatted_negative_explanation,
+        empty_answer,
+        expected_answer,
+    )
+
+
+def recipe_by_health(ontology_graph, food: str, condition: str):
+    query = f"""
+        SELECT DISTINCT ?condition (:{food} AS ?food) ?cause 
+        WHERE {{
             ?condition rdf:type/rdfs:subClassOf* :Health .
             ?condition :mightBeCausedBy ?cause .
-            :pasta_bolognese :contains ?cause .
-        }
-    """,
-        expected_answer="high_cholesterol",
-        any_answer=False,
-        explanation="{0} might be caused by {1} because it contains {2}",
-    ),
-    "fieldhockey_and_not_walk": query_answer_tuple(
-        query="""
-        SELECT ?condition (:field_hockey AS ?sport) (:walking AS ?sport2)
-        WHERE {
-            ?condition :mightBeCausedBy :field_hockey .
-            ?condition :canNotPerform :walking .
-        }
-    """,
-        expected_answer=None,
-        any_answer=True,
-        explanation="{0} can be caused by {1} and prevents {2}",
-    ),
-    "weight_lifting_decreases_nutrient": query_answer_tuple(
-        query="""
-        SELECT ?sport ?nutrient (:ramen AS ?food) ?ingredient
-        WHERE {
+            :{food} :contains ?cause .
+        }}
+    """
+    return generic_query(
+        ontology_graph,
+        query,
+        "{0} might be caused by {1} because it contains {2}",
+        f"{condition} is not caused {food}",
+        empty_answer=False,
+        expected_answer=condition,
+    )
+
+
+def sport_and_not_sport(ontology_graph, sport: str, not_sport: str):
+    query = f"""
+        SELECT ?condition (:{sport} AS ?sport) (:{not_sport} AS ?sport2)
+        WHERE {{
+            ?condition :mightBeCausedBy :{sport} .
+            ?condition :canNotPerform :{not_sport} .
+        }}
+    """
+    return generic_query(
+        ontology_graph,
+        query,
+        "{0} can be caused by {1} and prevents {2}",
+        f"{sport} does not cause a condition that prevents {not_sport}",
+        empty_answer=False,
+    )
+
+
+def sport_promotes_over_sport(ontology_graph, sport: str, sport2: str):
+    query = f"""
+        SELECT ?benefit (:{sport} AS ?sport) (:{sport2} AS ?sport2)
+        WHERE {{
+            :{sport} :promotes ?benefit .
+            FILTER NOT EXISTS {{
+                :{sport2} :promotes ?benefit .
+            }}
+        }}
+    """
+    return generic_query(
+        ontology_graph,
+        query,
+        "{0} is promoted by {1} but not by {2}",
+        f"{sport} does not promote any benefits that {sport2} doesn't",
+        empty_answer=False,
+    )
+
+
+def sport_promoted_by_food(ontology_graph, sport: str, food: str):
+    query = f"""
+        SELECT ?sport ?nutrient (:{food} AS ?food) ?ingredient
+        WHERE {{
             ?sport rdf:type/rdfs:subClassOf* :Sport .
             ?sport :decreasesNutrient ?nutrient .
-            :ramen :contains ?ingredient .
+            :{food} :contains ?ingredient .
             ?ingredient :contains ?nutrient .
-        }
-    """,
-        expected_answer="weight_lifting",
-        any_answer=False,
-        explanation="{0} decreases {1} but {2} contains {3}",
-    ),
-    "walking_promotes_over_weightlifting": query_answer_tuple(
-        query="""
-        SELECT ?benefit (:walking AS ?sport) (:weight_lifting AS ?sport2)
-        WHERE {
-            :walking :promotes ?benefit .
-            FILTER NOT EXISTS {
-                :weight_lifting :promotes ?benefit .
-            }
-        }
-    """,
-        expected_answer=None,
-        any_answer=True,
-        explanation="{0} promotes {1} but {2} does not",
-    ),
-    "ramen_has_egg_swap": query_answer_tuple(
-        query="""
-        SELECT ?ingredient (:egg AS ?egg) ?swap
-            WHERE {
-                :ramen :contains ?ingredient .
-                ?ingredient :contains :egg .
-                FILTER NOT EXISTS {
+        }}
+    """
+    return generic_query(
+        ontology_graph,
+        query,
+        "{0} decreases {1} but {2} contains {3}",
+        f"{food} does not contain any nutrients that {sport} decreases",
+        empty_answer=False,
+        expected_answer=sport,
+    )
+
+
+def food_has_allergy_swap(ontology_graph, food: str, allergy: str):
+    query = f"""
+        SELECT ?ingredient (:{allergy} AS ?egg)
+            WHERE {{
+                :{food} :contains ?ingredient .
+                ?ingredient :contains :{allergy} .
+                FILTER NOT EXISTS {{
                     ?ingredient :hasSwap ?swap .
-            }
-            }
-    """,
-        expected_answer=None,
-        any_answer=False,
-        explanation="{0} contains {1} but does not have a swap",
-    ),
-    "tagine_help_dizzy_fever": query_answer_tuple(
-        query="""
+            }}
+            }}
+    """
+    return generic_query(
+        ontology_graph,
+        query,
+        f"all ingredients in {food} do not contain {allergy} of have a swap",
+        "{0} contains {1} but does not have a swap",
+        empty_answer=True,
+    )
+
+
+def recipe_help_symptoms(ontology_graph, recipe: str, symptoms: list[str]):
+    query = f"""
         SELECT ?condition
-        WHERE {
-            ?condition :hasSymptom :dizzy ;
-                        :hasSymptom :fever .
-            FILTER NOT EXISTS {
+        WHERE {{
+            ?condition :hasSymptom {" ; :hasSymptom :".join(symptoms)} .
+            FILTER NOT EXISTS {{
                 ?condition :shouldEat ?food .
-                ?food :containedBy :tagine .
-            }
-        }
-    """,
-        expected_answer=None,
-        any_answer=False,
-        explanation="Tagline satisfies all conditions with symptoms",
-    ),
-    "soccer_with_dizzy_fever": query_answer_tuple(
-        query="""
-        SELECT ?condition (:soccer AS ?sport)
-        WHERE {
-            ?condition :hasSymptom :dizzy ;
-                        :hasSymptom :fever .
-            ?condition :canPerform :soccer .
-        }
-        """,
-        expected_answer=None,
-        any_answer=True,
-        explanation="{0} condition has these symptoms lets you perform soccer",
-    ),
+                ?food :containedBy :{recipe} .
+            }}
+        }}
+    """
+    return generic_query(
+        ontology_graph,
+        query,
+        f"{recipe} does helps with {" and ".join(symptoms)}",
+        f"{{0}} has symptom {", ".join(symptoms)} which are not helped by {recipe}",
+        empty_answer=True,
+    )
+
+
+def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
+    query = f"""
+        SELECT ?condition (:{sport} AS ?sport)
+        WHERE {{
+            ?condition :hasSymptom {" ; :hasSymptom :".join(symptoms)} .
+            ?condition :canPerform :{sport} .
+        }}
+    """
+    return generic_query(
+        ontology_graph,
+        query,
+        "{0} condition has these symptoms lets you perform {1}",
+        f"you can perform {sport} with these symptoms {", ".join(symptoms)}",
+        empty_answer=False,
+    )
+
+
+# Dictionary of all query functions
+query_functions = {
+    "recipe_by_health": recipe_by_health,
+    "sport_and_not_sport": sport_and_not_sport,
+    "sport_promotes_over_sport": sport_promotes_over_sport,
+    "sport_promoted_by_food": sport_promoted_by_food,
+    "food_has_allergy_swap": food_has_allergy_swap,
+    "recipe_help_symptoms": recipe_help_symptoms,
+    "sport_with_symptoms": sport_with_symptoms,
 }
