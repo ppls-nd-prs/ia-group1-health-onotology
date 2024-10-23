@@ -2,6 +2,7 @@ from owlready2 import *
 
 from src.queries import *
 from src.utils import IsTruth
+from fuzzywuzzy import fuzz
 
 
 class OntologyCheck:
@@ -14,23 +15,32 @@ class OntologyCheck:
         self.graph = my_world.as_rdflib_graph()
 
     def get_query_from_user_input(self, user_input: str) -> query_answer_tuple:
-        match user_input:
-            case "Does eating pasta bolognese cause high cholesterol?":
-                return queries["high_cholesterol_by_pasta"]
-            case "Can not being able to walk be caused by playing field hockey?":
-                return queries["fieldhockey_and_not_walk"]
-            case "Does walking provide any health benefit that is not provided by weightlifting?":
-                return queries["walking_promotes_over_weightlifting"]
-            case "Does ramen provide the required nutrients for weightlifting?":
-                return queries["weight_lifting_decreases_nutrient"]
-            case "Can someone with an egg allergy eat ramen?":
-                return queries["ramen_has_egg_swap"]
-            case "Does eating tagine help against dizziness and a fever?":
-                return queries["tagine_help_dizzy_fever"]
-            case "Is it possible that you are able to play soccer with dizziness and a fever?":
-                return queries["soccer_with_dizzy_fever"]
-            case _:
-                raise ValueError(f"Unknown query: {user_input}")
+        predefined_questions = {
+            "Does eating pasta bolognese cause high cholesterol?": "high_cholesterol_by_pasta",
+            "Can not being able to walk be caused by playing field hockey?": "fieldhockey_and_not_walk",
+            "Does walking provide any health benefit that is not provided by weightlifting?": "walking_promotes_over_weightlifting",
+            "Does ramen provide the required nutrients for weightlifting?": "weight_lifting_decreases_nutrient",
+            "Can someone with an egg allergy eat ramen?": "ramen_has_egg_swap",
+            "Does eating tagine help against dizziness and a fever?": "tagine_help_dizzy_fever",
+            "Is it possible that you are able to play soccer with dizziness and a fever?": "soccer_with_dizzy_fever",
+        }
+
+        best_match = self.get_best_match_fuzzywuzzy(user_input, predefined_questions)
+
+        if best_match:
+            return queries[predefined_questions[best_match]]
+        else:
+            raise ValueError(f"No similar query found for: {user_input}")
+
+    def get_best_match_fuzzywuzzy(self, user_input, predefined_questions, threshold=70):
+        best_ratio = 0
+        best_match = None
+        for question in predefined_questions:
+            ratio = fuzz.token_sort_ratio(user_input.lower(), question.lower())
+            if ratio > best_ratio and ratio >= threshold:
+                best_ratio = ratio
+                best_match = question
+        return best_match
 
     def ontology_check_truth(self, user_input: str) -> IsTruth:
         related_query = self.get_query_from_user_input(user_input)

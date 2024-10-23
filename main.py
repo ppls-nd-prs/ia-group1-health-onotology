@@ -46,6 +46,8 @@ def main():
     ontology = OntologyCheck()
     while True:
         user_input = sense_user_input()
+        if user_input == "":
+            break
         is_true_llm = llm_check_truth(user_input)
         is_true_ontology = ontology.ontology_check_truth(user_input)
 
