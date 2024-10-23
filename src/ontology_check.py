@@ -7,7 +7,7 @@ import re
 
 
 class OntologyCheck:
-    symptoms = '(?:an |a )?(\w*(?: \w*)?)(?: and (?:an |a )?(\w*))?'
+    symptoms = '(?:an |a )?(\w*(?: \w*)?)(?: and (?:an |a )?(\w*(?: \w*)?))+'
     sport = '(?:play |perform )?(.*)'
     sporting = '(?:playing |performing )?(.*)'
 
@@ -22,12 +22,12 @@ class OntologyCheck:
     patterns = [Recipe_by_Health, Sport_and_not_Sport, Sport_promotes_over_Sport, Recipe_fuels_Sport, Allergy_eat_Recipe, Recipe_help_Symptom, Sport_with_Symptom]
 
     def __init__(self):
-        my_world = World()
-        my_world.get_ontology("health-ontology.rdf").load()
+        self.my_world = World()
+        self.my_world.get_ontology("health-ontology.rdf").load()
         sync_reasoner(
-            my_world, infer_property_values=True
+            self.my_world, infer_property_values=True
         )  # reasoner is started and synchronized here)  # reasoner is started and synchronized here
-        self.graph = my_world.as_rdflib_graph()
+        self.graph = self.my_world.as_rdflib_graph()
 
     def ontology_check_truth(self, user_input: str):
         for pattern in self.patterns: 
@@ -43,13 +43,19 @@ class OntologyCheck:
 
   
     def check_if_in_ontology(self, pattern, arg1, arg2):
+        return True #! should be removed 
         classes = re.findall(r'\b[A-Z][a-z]*\b', pattern)
-        if arg1 in classes[0]:
+        class1 = self.my_world.classes[0]
+        class2 = self.my_world.classes[1]
+        if not class1 in self.my_world.arg1.is_a:
+            return False 
         
         if type(arg2) == list: 
-            for arg in arg2: 
-                if arg in classes[1]
+            for a in arg2: 
+                if not class2 in self.my_world.a.is_a:
+                    return False
         else: 
-            if arg2 in classes[1]
+            if not class2 in self.my_world.arg2.is_a:
+                return False
 
 

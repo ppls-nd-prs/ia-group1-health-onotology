@@ -2,3 +2,5 @@ __pycache__
 venv-ia
 _docs
 .env
+test.py
+test.ipynb
