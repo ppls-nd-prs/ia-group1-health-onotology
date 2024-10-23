@@ -32,15 +32,24 @@ class OntologyCheck:
     def ontology_check_truth(self, user_input: str):
         for pattern in self.patterns: 
             if p := pattern[0].match(user_input):
-                arg1 = p.groups()[0]
+                arg1 = '_'.join(p.groups()[0].split(' '))
                 if len(p.groups()) > 2:
-                    arg2 = [p.groups()[1:]]
+                    arg2 = ['_'.join(a.split(' ')) for a in p.groups()[1:]]
                 else: 
-                    arg2 = p.groups()[1]
-                if self.check_if_in_ontology(p, pattern[1]):
+                    arg2 = '_'.join(p.groups()[1].split(' '))
+                if self.check_if_in_ontology(pattern[1], arg1, arg2):
                     return query_functions[pattern[1]](self.graph, arg1, arg2)
         raise ValueError(f"Unknown query: {user_input}")
 
   
-    def check_if_in_ontology():
-    
+    def check_if_in_ontology(self, pattern, arg1, arg2):
+        classes = re.findall(r'\b[A-Z][a-z]*\b', pattern)
+        if arg1 in classes[0]:
+        
+        if type(arg2) == list: 
+            for arg in arg2: 
+                if arg in classes[1]
+        else: 
+            if arg2 in classes[1]
+
+
