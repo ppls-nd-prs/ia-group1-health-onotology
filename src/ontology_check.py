@@ -3,8 +3,24 @@ from owlready2 import *
 from src.queries import *
 from src.utils import IsTruth
 
+import re
+
 
 class OntologyCheck:
+    symptoms = '(?:an |a )?(\w*(?: \w*)?)(?: and (?:an |a )?(\w*))?'
+    sport = '(?:play |perform )?(.*)'
+    sporting = '(?:playing |performing )?(.*)'
+
+    Recipe_by_Health = (re.compile('Does eating (.*) cause (.*)\?'), 'Recipe_by_Health')
+    Sport_and_not_Sport = (re.compile(f'Can not being able to {sport} be caused by {sporting}\?'), 'Sport_and_not_Sport')
+    Sport_promotes_over_Sport = (re.compile(f'Does {sporting} provide any health benefit that is not provided by {sporting}\?'), ) 
+    Recipe_fuels_Sport = (re.compile(f'Does (.*) provide the required nutrients for {sporting}\?'), 'Sport_promotes_over_Sport')
+    Allergy_eat_Recipe = (re.compile(f'Can someone with (?:an|a) (.*) eat (.*)\?'), 'Allergy_eat_Recipe')
+    Recipe_help_Symptom = (re.compile(f'Does eating (.*) help against {symptoms}\?'), 'Recipe_help_Symptom')
+    Sport_with_Symptom = (re.compile(f'Is it possible that you are able to {sport} with {symptoms}\?'), 'Sport_with_Symptom') 
+
+    patterns = [Recipe_by_Health, Sport_and_not_Sport, Sport_promotes_over_Sport, Recipe_fuels_Sport, Allergy_eat_Recipe, Recipe_help_Symptom, Sport_with_Symptom]
+
     def __init__(self):
         my_world = World()
         my_world.get_ontology("health-ontology.rdf").load()
@@ -13,53 +29,18 @@ class OntologyCheck:
         )  # reasoner is started and synchronized here)  # reasoner is started and synchronized here
         self.graph = my_world.as_rdflib_graph()
 
-    def get_query_from_user_input(self, user_input: str) -> query_answer_tuple:
-        match user_input:
-            case "Does eating pasta bolognese cause high cholesterol?":
-                return queries["high_cholesterol_by_pasta"]
-            case "Can not being able to walk be caused by playing field hockey?":
-                return queries["fieldhockey_and_not_walk"]
-            case "Does walking provide any health benefit that is not provided by weightlifting?":
-                return queries["walking_promotes_over_weightlifting"]
-            case "Does ramen provide the required nutrients for weightlifting?":
-                return queries["weight_lifting_decreases_nutrient"]
-            case "Can someone with an egg allergy eat ramen?":
-                return queries["ramen_has_egg_swap"]
-            case "Does eating tagine help against dizziness and a fever?":
-                return queries["tagine_help_dizzy_fever"]
-            case "Is it possible that you are able to play soccer with dizziness and a fever?":
-                return queries["soccer_with_dizzy_fever"]
-            case _:
-                raise ValueError(f"Unknown query: {user_input}")
+    def ontology_check_truth(self, user_input: str):
+        for pattern in self.patterns: 
+            if p := pattern[0].match(user_input):
+                arg1 = p.groups()[0]
+                if len(p.groups()) > 2:
+                    arg2 = [p.groups()[1:]]
+                else: 
+                    arg2 = p.groups()[1]
+                if self.check_if_in_ontology(p, pattern[1]):
+                    return query_functions[pattern[1]](self.graph, arg1, arg2)
+        raise ValueError(f"Unknown query: {user_input}")
 
-    def ontology_check_truth(self, user_input: str) -> IsTruth:
-        related_query = self.get_query_from_user_input(user_input)
-        query = f"""
-                PREFIX : <http://www.semanticweb.org/uu/ia/group1/health/ontology#>
-                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-                PREFIX owl: <http://www.w3.org/2002/07/owl#>
-                    {related_query.query}
-                """
-
-        results = self.graph.query_owlready(query)
-        resultsList = list(results)[0]
-
-        if related_query.any_answer:
-            correct = len(resultsList) > 0
-            return IsTruth(
-                correct,
-                related_query.explanation.format(*resultsList),
-            )
-        if related_query.expected_answer is None:
-            return IsTruth(
-                len(resultsList) == 0,
-                related_query.explanation.format(*resultsList),
-            )
-        for result in resultsList:
-            if related_query.expected_answer in str(result):
-                return IsTruth(
-                    True,
-                    related_query.explanation.format(*resultsList),
-                )
-        return IsTruth(False, related_query.explanation.format(*resultsList))
+  
+    def check_if_in_ontology():
+    

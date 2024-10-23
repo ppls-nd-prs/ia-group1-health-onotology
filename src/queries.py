@@ -208,11 +208,11 @@ def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
 
 # Dictionary of all query functions
 query_functions = {
-    "recipe_by_health": recipe_by_health,
-    "sport_and_not_sport": sport_and_not_sport,
-    "sport_promotes_over_sport": sport_promotes_over_sport,
-    "sport_promoted_by_food": sport_promoted_by_food,
-    "food_has_allergy_swap": food_has_allergy_swap,
-    "recipe_help_symptoms": recipe_help_symptoms,
-    "sport_with_symptoms": sport_with_symptoms,
+    "Recipe_by_Health": recipe_by_health,
+    "Sport_and_not_Sport": sport_and_not_sport,
+    "Sport_promotes_over_Sport": sport_promotes_over_sport,
+    "Recipe_fuels_Sport": sport_promoted_by_food,
+    "Allergy_eat_Recipe": food_has_allergy_swap,
+    "Recipe_help_Symptom": recipe_help_symptoms,
+    "Sport_with_Symptom": sport_with_symptoms,
 }
