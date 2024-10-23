@@ -1,4 +1,6 @@
-from utils import IsTruth
+from re import L
+
+from src.utils import IsTruth
 
 
 def run_query(ontology_graph, query: str) -> list:
@@ -9,7 +11,20 @@ def run_query(ontology_graph, query: str) -> list:
             PREFIX owl: <http://www.w3.org/2002/07/owl#>
                 {query}
             """
-    return list(ontology_graph.query_owlready(query))[0]
+    result = ontology_graph.query_owlready(full_query)
+
+    list_result = list(result)[0]
+    # Remove 'health-ontology.' prefix from each result
+    cleaned_result = []
+    for item in list_result:
+        item = str(item)
+        if item.startswith("health-ontology."):
+            cleaned_result.append(item.split("health-ontology.", 1)[1])
+        else:
+            cleaned_result.append(item)
+    list_result = cleaned_result
+
+    return list_result
 
 
 def check_query(
