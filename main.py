@@ -43,16 +43,15 @@ def choose_appropriate_response(is_true_llm: IsTruth, is_true_ontology: IsTruth)
 
 
 def main():
-    user_input = sense_user_input()
-    is_true_llm = llm_check_truth(user_input)
-    is_true_ontology = ontology_check_truth(user_input)
+    ontology = OntologyCheck()
+    while True:
+        user_input = sense_user_input()
+        is_true_llm = llm_check_truth(user_input)
+        is_true_ontology = ontology.ontology_check_truth(user_input)
 
-    response = choose_appropriate_response(is_true_llm, is_true_ontology)
-    print(response)
+        response = choose_appropriate_response(is_true_llm, is_true_ontology)
+        print(response)
 
 
 if __name__ == "__main__":
-    ontology = OntologyCheck()
-    is_true_ontology = ontology.ontology_check_truth("test")
-
-    # main()
+    main()
