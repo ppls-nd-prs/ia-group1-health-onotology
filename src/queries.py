@@ -3,7 +3,7 @@ from re import L
 from src.utils import IsTruth
 
 
-def run_query(ontology_graph, query: str) -> list:
+def run_query(ontology_graph, query: str, verbose = False) -> list:
     full_query = f"""
             PREFIX : <http://www.semanticweb.org/uu/ia/group1/health/ontology#>
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -13,6 +13,7 @@ def run_query(ontology_graph, query: str) -> list:
             """
     result = ontology_graph.query_owlready(full_query)
     list_result = list(result)
+    if verbose: print('>>>', list_result)
     if len(list_result) > 0:
         list_result = list_result[0]
     # Remove 'health-ontology.' prefix from each result
@@ -79,8 +80,8 @@ def generic_query(
     expected_answer: str | None = None,
     verbose = True  
 ):
-    result = run_query(ontology_graph, query)
-    if verbose: print(result)
+    result = run_query(ontology_graph, query, verbose)
+    if verbose: print('>>>', result)
     if len(result) > 0:
         formatted_positive_explanation = positive_explanation.format(*result)
         formatted_negative_explanation = negative_explanation.format(*result)
@@ -175,33 +176,35 @@ def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str):
     # Food and containedBy value ramen 
     # (Food and not (hasAllergen some (triggersAllergy  value egg_allergy))) or hasSwap some (not(hasAllergen some (triggersAllergy value egg_allergy)))
     query = f"""
-        SELECT ?ingredient ?allergen
+        SELECT ?ingredient ?allergen ?allergen_ingredient ?swap
         WHERE {{
+        {{ 
             :{recipe} :hasFood ?ingredient .
-
             FILTER NOT EXISTS {{
                 ?ingredient :hasAllergen ?allergen .
                 ?allergen :triggersAllergy :{allergy} .
             }}
-
-            FILTER EXISTS {{
-                ?ingredient :hasAllergen ?allergen .
-                ?allergen :triggersAllergy :{allergy} .
-                ?ingredient :hasSwap ?swap .
-                FILTER NOT EXISTS {{
-                    ?swap :hasAllergen ?swap_allergen .
-                    ?swap_allergen :triggersAllergy :{allergy} .
-                }}
+        }} 
+        UNION 
+        {{ 
+            :{recipe} :hasFood ?allergen_ingredient .
+            ?allergen_ingredient :hasAllergen ?allergen .
+            ?allergen :triggersAllergy :{allergy} .
+            ?allergen_ingredient :hasSwap ?swap .
+            FILTER NOT EXISTS {{
+                ?swap :hasAllergen ?swap_allergen .
+                ?swap_allergen :triggersAllergy :{allergy} .
             }}
         }}
+    }}
     """
 
     return generic_query(
         ontology_graph,
         query,
-        f"all ingredients in {recipe} do not contain a food that triggers an allergy to {allergy.split('_')[0]}",
-        f"{recipe} contains {{0}}, which contains {{0}} and it does not have a swap",
-        empty_answer=True,
+        f"all ingredients in {recipe} do not contain a food that triggers an allergy to {allergy.split('_')[0]}, or they have a swap",
+        f"{recipe} triggers an allergy to {allergy.split('_')[0]} and it does not have a swap",
+        empty_answer=False,
     )
 
 
