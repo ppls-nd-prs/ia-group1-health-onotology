@@ -77,8 +77,10 @@ def generic_query(
     negative_explanation: str,
     empty_answer: bool,
     expected_answer: str | None = None,
+    verbose = True  
 ):
     result = run_query(ontology_graph, query)
+    if verbose: print(result)
     if len(result) > 0:
         formatted_positive_explanation = positive_explanation.format(*result)
         formatted_negative_explanation = negative_explanation.format(*result)
@@ -94,20 +96,20 @@ def generic_query(
     )
 
 
-def recipe_by_health(ontology_graph, food: str, condition: str):
+def recipe_by_health(ontology_graph, recipe: str, condition: str):
     query = f"""
-        SELECT DISTINCT ?condition (:{food} AS ?food) ?cause 
+        SELECT DISTINCT ?condition (:{recipe} AS ?food) ?cause 
         WHERE {{
             ?condition rdf:type/rdfs:subClassOf* :Health .
             ?condition :mightBeCausedBy ?cause .
-            :{food} :contains ?cause .
+            :{recipe} :contains ?cause .
         }}
     """
     return generic_query(
         ontology_graph,
         query,
         "{0} might be caused by {1} because it contains {2}",
-        f"{condition} is not caused {food}",
+        f"{condition} is not caused {recipe}",
         empty_answer=False,
         expected_answer=condition,
     )
@@ -149,13 +151,13 @@ def sport_promotes_over_sport(ontology_graph, sport: str, sport2: str):
     )
 
 
-def sport_promoted_by_food(ontology_graph, sport: str, food: str):
+def recipe_fuels_sport(ontology_graph, recipe: str, sport: str):
     query = f"""
-        SELECT ?sport ?nutrient (:{food} AS ?food) ?ingredient
+        SELECT ?sport ?nutrient (:{recipe} AS ?food) ?ingredient
         WHERE {{
             ?sport rdf:type/rdfs:subClassOf* :Sport .
             ?sport :decreasesNutrient ?nutrient .
-            :{food} :contains ?ingredient .
+            :{recipe} :contains ?ingredient .
             ?ingredient :contains ?nutrient .
         }}
     """
@@ -163,36 +165,42 @@ def sport_promoted_by_food(ontology_graph, sport: str, food: str):
         ontology_graph,
         query,
         "{0} decreases {1} but {2} contains {3}",
-        f"{food} does not contain any nutrients that {sport} decreases",
+        f"{recipe} does not contain any nutrients that {sport} decreases",
         empty_answer=False,
         expected_answer=sport,
     )
 
 
-def food_has_allergy_swap(ontology_graph, dish: str, allergy: str):
+def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str):
     # Food and containedBy value ramen 
     # (Food and not (hasAllergen some (triggersAllergy  value egg_allergy))) or hasSwap some (not(hasAllergen some (triggersAllergy value egg_allergy)))
     query = f"""
-        SELECT ?ingredient ?allergen (:{allergy} AS ?egg)
-            WHERE {{
-                :{dish} :hasFood ?ingredient .
-                :{allergy} :triggersAllergy ?allergen
+        SELECT ?ingredient ?allergen
+        WHERE {{
+            :{recipe} :hasFood ?ingredient .
 
+            FILTER NOT EXISTS {{
+                ?ingredient :hasAllergen ?allergen .
+                ?allergen :triggersAllergy :{allergy} .
+            }}
+
+            FILTER EXISTS {{
+                ?ingredient :hasAllergen ?allergen .
+                ?allergen :triggersAllergy :{allergy} .
+                ?ingredient :hasSwap ?swap .
                 FILTER NOT EXISTS {{
-                    ?ingredient :hasAllergen ?allergen .
-                }}
-                FILTER NOT EXISTS {{
-                    ?ingredient :hasSwap ?swap .
-                    ?swap :hasAllergen ?allergen
+                    ?swap :hasAllergen ?swap_allergen .
+                    ?swap_allergen :triggersAllergy :{allergy} .
                 }}
             }}
+        }}
     """
 
     return generic_query(
         ontology_graph,
         query,
-        f"all ingredients in {dish} do not contain {allergy} of have a swap",
-        "{0} contains {1} but does not have a swap",
+        f"all ingredients in {recipe} do not contain a food that triggers an allergy to {allergy.split('_')[0]}",
+        f"{recipe} contains {{0}}, which contains {{0}} and it does not have a swap",
         empty_answer=True,
     )
 
@@ -229,7 +237,7 @@ def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
         ontology_graph,
         query,
         "{0} condition has these symptoms lets you perform {1}",
-        f"you can perform {sport} with these symptoms {', '.join(symptoms)}",
+        f"you cannot perform {sport} with these symptoms {', '.join(symptoms)}",
         empty_answer=False,
     )
 
@@ -239,8 +247,8 @@ query_functions = {
     "Recipe_by_Health": recipe_by_health,
     "Sport_and_not_Sport": sport_and_not_sport,
     "Sport_promotes_over_Sport": sport_promotes_over_sport,
-    "Recipe_fuels_Sport": sport_promoted_by_food,
-    "Allergy_eat_Recipe": food_has_allergy_swap,
+    "Recipe_fuels_Sport": recipe_fuels_sport,
+    "Allergy_eat_Recipe": allergy_eat_recipe,
     "Recipe_help_Symptom": recipe_help_symptoms,
     "Sport_with_Symptom": sport_with_symptoms,
 }
