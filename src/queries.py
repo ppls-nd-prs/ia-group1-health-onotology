@@ -12,8 +12,9 @@ def run_query(ontology_graph, query: str) -> list:
                 {query}
             """
     result = ontology_graph.query_owlready(full_query)
-
-    list_result = list(result)[0]
+    list_result = list(result)
+    if len(list_result) > 0:
+        list_result = list_result[0]
     # Remove 'health-ontology.' prefix from each result
     cleaned_result = []
     for item in list_result:
@@ -78,8 +79,12 @@ def generic_query(
     expected_answer: str | None = None,
 ):
     result = run_query(ontology_graph, query)
-    formatted_positive_explanation = positive_explanation.format(*result)
-    formatted_negative_explanation = negative_explanation.format(*result)
+    if len(result) > 0:
+        formatted_positive_explanation = positive_explanation.format(*result)
+        formatted_negative_explanation = negative_explanation.format(*result)
+    else:
+        formatted_positive_explanation = positive_explanation
+        formatted_negative_explanation = negative_explanation
     return check_query(
         result,
         formatted_positive_explanation,
@@ -188,7 +193,7 @@ def recipe_help_symptoms(ontology_graph, recipe: str, symptoms: list[str]):
     query = f"""
         SELECT ?condition
         WHERE {{
-            ?condition :hasSymptom {" ; :hasSymptom :".join(symptoms)} .
+            ?condition :hasSymptom :{" ; :hasSymptom :".join(symptoms)} .
             FILTER NOT EXISTS {{
                 ?condition :shouldEat ?food .
                 ?food :containedBy :{recipe} .
@@ -208,7 +213,7 @@ def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
     query = f"""
         SELECT ?condition (:{sport} AS ?sport)
         WHERE {{
-            ?condition :hasSymptom {" ; :hasSymptom :".join(symptoms)} .
+            ?condition :hasSymptom :{" ; :hasSymptom :".join(symptoms)} .
             ?condition :canPerform :{sport} .
         }}
     """
