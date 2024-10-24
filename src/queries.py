@@ -13,17 +13,21 @@ def run_query(ontology_graph, query: str, verbose = False) -> list:
             """
     result = ontology_graph.query_owlready(full_query)
     list_result = list(result)
-    if verbose: print('>>>', list_result)
-    if len(list_result) > 0:
-        list_result = list_result[0]
+    if verbose: print('>>ALL_RES:', list_result)
+    list_result = list(zip(*list_result)) #group the vars/args of all results 
+    if verbose: print('>>>GROUPED_RES:', list_result)
     # Remove 'health-ontology.' prefix from each result
     cleaned_result = []
-    for item in list_result:
-        item = str(item)
-        if item.startswith("health-ontology."):
-            cleaned_result.append(item.split("health-ontology.", 1)[1])
-        else:
-            cleaned_result.append(item)
+    for arg in list_result:
+        cleaned_arg = []
+        for item in arg:
+            item = str(item)
+            if item.startswith("health-ontology."):
+                cleaned_arg.append(item.split("health-ontology.", 1)[1])
+            else:
+                cleaned_arg.append(item)
+        if len(arg)>1: cleaned_result.append(', '.join(cleaned_arg)) 
+        else: cleaned_result.append(cleaned_arg[0])
     list_result = cleaned_result
 
     return list_result
@@ -78,7 +82,7 @@ def generic_query(
     negative_explanation: str,
     empty_answer: bool,
     expected_answer: str | None = None,
-    verbose = True  
+    verbose = False  
 ):
     result = run_query(ontology_graph, query, verbose)
     if verbose: print('>>>', result)
@@ -176,7 +180,7 @@ def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str):
     # Food and containedBy value ramen 
     # (Food and not (hasAllergen some (triggersAllergy  value egg_allergy))) or hasSwap some (not(hasAllergen some (triggersAllergy value egg_allergy)))
     query = f"""
-        SELECT ?ingredient ?allergen ?allergen_ingredient ?swap
+        SELECT ?ingredient ?allergen ?swap
         WHERE {{
         {{ 
             :{recipe} :hasFood ?ingredient .
@@ -187,10 +191,10 @@ def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str):
         }} 
         UNION 
         {{ 
-            :{recipe} :hasFood ?allergen_ingredient .
-            ?allergen_ingredient :hasAllergen ?allergen .
+            :{recipe} :hasFood ?ingredient .
+            ?ingredient :hasAllergen ?allergen .
             ?allergen :triggersAllergy :{allergy} .
-            ?allergen_ingredient :hasSwap ?swap .
+            ?ingredient :hasSwap ?swap .
             FILTER NOT EXISTS {{
                 ?swap :hasAllergen ?swap_allergen .
                 ?swap_allergen :triggersAllergy :{allergy} .
@@ -202,7 +206,7 @@ def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str):
     return generic_query(
         ontology_graph,
         query,
-        f"all ingredients in {recipe} do not contain a food that triggers an allergy to {allergy.split('_')[0]}, or they have a swap",
+        f"all ingredients in {recipe} do not contain a food that triggers an allergy to {allergy.split('_')[0]}, if the following swaps are peformed: {{0}} --> {{2}}",
         f"{recipe} triggers an allergy to {allergy.split('_')[0]} and it does not have a swap",
         empty_answer=False,
     )
