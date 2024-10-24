@@ -169,21 +169,29 @@ def sport_promoted_by_food(ontology_graph, sport: str, food: str):
     )
 
 
-def food_has_allergy_swap(ontology_graph, food: str, allergy: str):
+def food_has_allergy_swap(ontology_graph, dish: str, allergy: str):
+    # Food and containedBy value ramen 
+    # (Food and not (hasAllergen some (triggersAllergy  value egg_allergy))) or hasSwap some (not(hasAllergen some (triggersAllergy value egg_allergy)))
     query = f"""
-        SELECT ?ingredient (:{allergy} AS ?egg)
+        SELECT ?ingredient ?allergen (:{allergy} AS ?egg)
             WHERE {{
-                :{food} :contains ?ingredient .
-                ?ingredient :contains :{allergy} .
+                :{dish} :hasFood ?ingredient .
+                :{allergy} :triggersAllergy ?allergen
+
+                FILTER NOT EXISTS {{
+                    ?ingredient :hasAllergen ?allergen .
+                }}
                 FILTER NOT EXISTS {{
                     ?ingredient :hasSwap ?swap .
-            }}
+                    ?swap :hasAllergen ?allergen
+                }}
             }}
     """
+
     return generic_query(
         ontology_graph,
         query,
-        f"all ingredients in {food} do not contain {allergy} of have a swap",
+        f"all ingredients in {dish} do not contain {allergy} of have a swap",
         "{0} contains {1} but does not have a swap",
         empty_answer=True,
     )
