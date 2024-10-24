@@ -193,7 +193,7 @@ def recipe_help_symptoms(ontology_graph, recipe: str, symptoms: list[str]):
     query = f"""
         SELECT ?condition
         WHERE {{
-            ?condition :hasSymptom :{" ; :hasSymptom :".join(symptoms)} .
+            ?condition :hasSymptom :{' ; :hasSymptom :'.join(symptoms)} .
             FILTER NOT EXISTS {{
                 ?condition :shouldEat ?food .
                 ?food :containedBy :{recipe} .
@@ -203,8 +203,8 @@ def recipe_help_symptoms(ontology_graph, recipe: str, symptoms: list[str]):
     return generic_query(
         ontology_graph,
         query,
-        f"{recipe} does helps with {" and ".join(symptoms)}",
-        f"{{0}} has symptom {", ".join(symptoms)} which are not helped by {recipe}",
+        f"{recipe} does helps with {' and '.join(symptoms)}",
+        f"{{0}} has symptom {', '.join(symptoms)} which are not helped by {recipe}",
         empty_answer=True,
     )
 
@@ -213,7 +213,7 @@ def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
     query = f"""
         SELECT ?condition (:{sport} AS ?sport)
         WHERE {{
-            ?condition :hasSymptom :{" ; :hasSymptom :".join(symptoms)} .
+            ?condition :hasSymptom :{' ; :hasSymptom :'.join(symptoms)} .
             ?condition :canPerform :{sport} .
         }}
     """
@@ -221,7 +221,7 @@ def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
         ontology_graph,
         query,
         "{0} condition has these symptoms lets you perform {1}",
-        f"you can perform {sport} with these symptoms {", ".join(symptoms)}",
+        f"you can perform {sport} with these symptoms {', '.join(symptoms)}",
         empty_answer=False,
     )
 
