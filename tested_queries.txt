@@ -16,3 +16,10 @@ X: not working properly (should output Y/N)
 - Does eating tagine help against dizziness and a fever? X (Y)
 - Is it possible that you are able to play soccer with dizziness and a fever? N
     - Is it possible that you are able to do walking with dizziness? Y
+
+
+testing instance checking 
+- Does eating risotto cause high cholesterol? WORKS
+- Does eating pasta bolognese cause ghj? 
+- Does eating walking cause high cholesterol?
+- Does eating pasta bolognese cause tofu?
