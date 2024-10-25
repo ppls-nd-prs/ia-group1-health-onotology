@@ -877,16 +877,16 @@
         <ontology:canNotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
         <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
         <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
-        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
         <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fever"/>
         <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy -->
+    <!-- http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy">
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Symptom"/>
     </owl:NamedIndividual>
     
@@ -904,7 +904,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_allergy">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
-        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
         <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#skin_rash"/>
         <ontology:triggeredByAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg"/>
     </owl:NamedIndividual>
@@ -982,7 +982,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten_allergy">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
-        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
         <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#skin_rash"/>
         <ontology:triggeredByAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#gluten"/>
     </owl:NamedIndividual>
@@ -1030,7 +1030,7 @@
         <ontology:canNotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
         <ontology:canNotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
         <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
-        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
         <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fever"/>
         <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
     </owl:NamedIndividual>
@@ -1049,7 +1049,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose_allergy">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Allergy"/>
-        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
         <ontology:triggeredByAllergen rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#lactose"/>
     </owl:NamedIndividual>
     
@@ -1080,7 +1080,7 @@
         <ontology:canNotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#soccer"/>
         <ontology:canNotPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#weight_lifting"/>
         <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
-        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
     </owl:NamedIndividual>
     
 
@@ -1593,7 +1593,7 @@
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#chickpea92g"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#coconut_milk90g"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#cold"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizzy"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_allergy"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#egg_noodles75g"/>
