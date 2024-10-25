@@ -82,7 +82,7 @@ def generic_query(
     negative_explanation: str,
     empty_answer: bool,
     expected_answer: str | None = None,
-    verbose = False  
+    verbose = True  
 ):
     result = run_query(ontology_graph, query, verbose)
     if verbose: print('>>>', result)
@@ -101,28 +101,28 @@ def generic_query(
     )
 
 
-def recipe_by_health(ontology_graph, recipe: str, condition: str):
+def recipe_by_health(ontology_graph, recipe: str, condition: str): #! in report: doesn't take foodswap info into account -> future 
     query = f"""
-        SELECT DISTINCT ?condition (:{recipe} AS ?food) ?cause 
+        SELECT DISTINCT ?ingredient ?cause 
         WHERE {{
-            ?condition rdf:type/rdfs:subClassOf* :Health .
-            ?condition :mightBeCausedBy ?cause .
-            :{recipe} :contains ?cause .
+            :{condition} :mightBeCausedBy ?cause .
+            :{recipe} :hasFood ?ingredient .
+            ?ingredient :hasNutrient ?cause 
         }}
     """
     return generic_query(
         ontology_graph,
         query,
-        "{0} might be caused by {1} because it contains {2}",
-        f"{condition} is not caused {recipe}",
+        f"{condition} might be caused by {{1}} which is contained in {{0}} which is an ingredient in {recipe}",
+        f"{condition} is not caused by eating {recipe}",
         empty_answer=False,
-        expected_answer=condition,
     )
 
 
-def sport_and_not_sport(ontology_graph, sport: str, not_sport: str):
+def not_sport_and_sport(ontology_graph, not_sport: str, sport: str):
+    print('>>>', f'{sport} causes not {not_sport}')
     query = f"""
-        SELECT ?condition (:{sport} AS ?sport) (:{not_sport} AS ?sport2)
+        SELECT ?condition
         WHERE {{
             ?condition :mightBeCausedBy :{sport} .
             ?condition :canNotPerform :{not_sport} .
@@ -131,8 +131,8 @@ def sport_and_not_sport(ontology_graph, sport: str, not_sport: str):
     return generic_query(
         ontology_graph,
         query,
-        "{0} can be caused by {1} and prevents {2}",
-        f"{sport} does not cause a condition that prevents {not_sport}",
+        f"a(n) {{0}} can be caused by {sport} and prevents doing any {not_sport}",
+        f"{sport} does not cause a condition that prevents doing any {not_sport}",
         empty_answer=False,
     )
 
@@ -252,7 +252,7 @@ def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
 # Dictionary of all query functions
 query_functions = {
     "Recipe_by_Health": recipe_by_health,
-    "Sport_and_not_Sport": sport_and_not_sport,
+    "not_Sport_and_Sport": not_sport_and_sport,
     "Sport_promotes_over_Sport": sport_promotes_over_sport,
     "Recipe_fuels_Sport": recipe_fuels_sport,
     "Allergy_eat_Recipe": allergy_eat_recipe,
