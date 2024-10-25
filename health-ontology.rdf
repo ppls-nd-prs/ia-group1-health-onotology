@@ -878,7 +878,6 @@
         <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#running"/>
         <ontology:canPerform rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#walking"/>
         <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#dizziness"/>
-        <ontology:hasSymptom rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fever"/>
         <ontology:shouldEat rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#fiber"/>
     </owl:NamedIndividual>
     
