@@ -7,7 +7,7 @@ import re
 
 
 class OntologyCheck:
-    symptoms = '(?:an |a )?(\w*(?: \w*)?)(?: and (?:an |a )?(\w*(?: \w*)?))+'
+    symptoms = '(?:an |a )?(\w*(?: \w*)?)(?: and (?:an |a )?(\w*(?: \w*)?))?' #!in report: 1-2 symptoms 
     sport = '(?:play |perform |do )?(.*)'
     sporting = '(?:playing |performing |do )?(.*)'
 
@@ -29,22 +29,19 @@ class OntologyCheck:
         )  # reasoner is started and synchronized here)  # reasoner is started and synchronized here
         self.graph = self.my_world.as_rdflib_graph()
 
-    def ontology_check_truth(self, user_input: str, verbose = True):
+    def ontology_check_truth(self, user_input: str, verbose = False):
         for pattern in self.patterns: 
             if p := pattern[0].match(user_input):
                 arg1 = '_'.join(p.groups()[0].split(' '))
                 if len(p.groups()) > 2:
-                    arg2 = ['_'.join(a.split(' ')) for a in p.groups()[1:]]
+                    arg2 = ['_'.join(a.split(' ')) for a in p.groups()[1:] if a is not None] #remove optional groups that were not filled 
                 else: 
                     arg2 = '_'.join(p.groups()[1].split(' '))
                 if self.check_if_in_ontology(pattern[1], arg1, arg2):
                     if verbose: print('>>>QUERY:', pattern[1], arg1, arg2)
-                    return query_functions[pattern[1]](self.graph, arg1, arg2)
+                    return query_functions[pattern[1]](self.graph, arg1, arg2, verbose)
         print('Unknown query, please try again.')
-        user_input = input("Enter your input: ")
-        return(self.ontology_check_truth(user_input))
-
-
+        return 
   
     def check_if_in_ontology(self, pattern, arg1, arg2):
         return True #! should be removed 
