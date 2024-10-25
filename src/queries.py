@@ -157,25 +157,24 @@ def sport_promotes_over_sport(ontology_graph, sport: str, sport2: str):
 
 def recipe_fuels_sport(ontology_graph, recipe: str, sport: str):
     query = f"""
-        SELECT ?sport ?nutrient (:{recipe} AS ?food) ?ingredient
+        SELECT ?nutrient ?ingredient
         WHERE {{
-            ?sport rdf:type/rdfs:subClassOf* :Sport .
-            ?sport :decreasesNutrient ?nutrient .
-            :{recipe} :contains ?ingredient .
-            ?ingredient :contains ?nutrient .
+            # ?sport rdf:type/rdfs:subClassOf* :Sport .
+            :{sport} :decreasesNutrient ?nutrient .
+            :{recipe} :hasFood ?ingredient .
+            ?ingredient :hasNutrient ?nutrient .
         }}
     """
     return generic_query(
         ontology_graph,
         query,
-        "{0} decreases {1} but {2} contains {3}",
+        f"{sport} decreases {{0}} and {recipe} contains {{1}} which contains {{0}}",
         f"{recipe} does not contain any nutrients that {sport} decreases",
         empty_answer=False,
-        expected_answer=sport,
     )
 
 
-def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str):
+def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str): #TODO: FIX THIS 
     # Food and containedBy value ramen 
     # (Food and not (hasAllergen some (triggersAllergy  value egg_allergy))) or hasSwap some (not(hasAllergen some (triggersAllergy value egg_allergy)))
     query = f"""
@@ -211,7 +210,8 @@ def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str):
     )
 
 
-def recipe_help_symptoms(ontology_graph, recipe: str, symptoms: list[str]):
+def recipe_help_symptoms(ontology_graph, recipe: str, symptoms: list[str]): #TODO: FIX THIS 
+    # hasSymptom value dizzy and hasSymptom value fever is a subset of shouldEat some (containedBy value tagine)
     query = f"""
         SELECT ?condition
         WHERE {{
@@ -233,7 +233,7 @@ def recipe_help_symptoms(ontology_graph, recipe: str, symptoms: list[str]):
 
 def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
     query = f"""
-        SELECT ?condition (:{sport} AS ?sport)
+        SELECT ?condition 
         WHERE {{
             ?condition :hasSymptom :{' ; :hasSymptom :'.join(symptoms)} .
             ?condition :canPerform :{sport} .
@@ -242,8 +242,8 @@ def sport_with_symptoms(ontology_graph, sport: str, symptoms: list[str]):
     return generic_query(
         ontology_graph,
         query,
-        "{0} condition has these symptoms lets you perform {1}",
-        f"you cannot perform {sport} with these symptoms {', '.join(symptoms)}",
+        f"{{0}} has these symptoms, but still lets you perform {sport}",
+        f"there is no condition with {', '.join(symptoms)} as symptopms that still lets you do {sport}",
         empty_answer=False,
     )
 
