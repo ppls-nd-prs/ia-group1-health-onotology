@@ -13,7 +13,7 @@ def run_query(ontology_graph, query: str, verbose = False) -> list:
             """
     result = ontology_graph.query_owlready(full_query)
     list_result = list(result)
-    if verbose: print('>>ALL_RES:', list_result)
+    if verbose: print('>>>ALL_RES:', list_result)
     list_result = list(zip(*list_result)) #group the vars/args of all results 
     if verbose: print('>>>GROUPED_RES:', list_result)
     # Remove 'health-ontology.' prefix from each result
@@ -138,7 +138,7 @@ def not_sport_and_sport(ontology_graph, not_sport: str, sport: str):
 
 def sport_promotes_over_sport(ontology_graph, sport: str, sport2: str):
     query = f"""
-        SELECT ?benefit (:{sport} AS ?sport) (:{sport2} AS ?sport2)
+        SELECT ?benefit
         WHERE {{
             :{sport} :promotes ?benefit .
             FILTER NOT EXISTS {{
@@ -149,7 +149,7 @@ def sport_promotes_over_sport(ontology_graph, sport: str, sport2: str):
     return generic_query(
         ontology_graph,
         query,
-        "{0} is promoted by {1} but not by {2}",
+        f"{{0}} is promoted by {sport} but not by {sport2}",
         f"{sport} does not promote any benefits that {sport2} doesn't",
         empty_answer=False,
     )

@@ -13,8 +13,8 @@ class OntologyCheck:
 
     Recipe_by_Health = (re.compile('Does eating (.*) cause (.*)\?'), 'Recipe_by_Health')
     not_Sport_and_Sport = (re.compile(f'Can not being able to {sport} be caused by {sporting}\?'), 'not_Sport_and_Sport')
-    Sport_promotes_over_Sport = (re.compile(f'Does {sporting} provide any health benefit that is not provided by {sporting}\?'), ) 
-    Recipe_fuels_Sport = (re.compile(f'Does (.*) provide the required nutrients for {sporting}\?'), 'Sport_promotes_over_Sport')
+    Sport_promotes_over_Sport = (re.compile(f'Does {sporting} provide any health benefit that is not provided by {sporting}\?'), 'Sport_promotes_over_Sport') 
+    Recipe_fuels_Sport = (re.compile(f'Does (.*) provide the required nutrients for {sporting}\?'), 'Recipe_fuels_Sport')
     Allergy_eat_Recipe = (re.compile(f'Can someone with (?:an|a) (.*) eat (.*)\?'), 'Allergy_eat_Recipe')
     Recipe_help_Symptom = (re.compile(f'Does eating (.*) help against {symptoms}\?'), 'Recipe_help_Symptom')
     Sport_with_Symptom = (re.compile(f'Is it possible that you are able to {sport} with {symptoms}\?'), 'Sport_with_Symptom') 
@@ -40,7 +40,10 @@ class OntologyCheck:
                 if self.check_if_in_ontology(pattern[1], arg1, arg2):
                     if verbose: print('>>>QUERY:', pattern[1], arg1, arg2)
                     return query_functions[pattern[1]](self.graph, arg1, arg2)
-        raise ValueError(f"Unknown query: {user_input}")
+        print('Unknown query, please try again.')
+        user_input = input("Enter your input: ")
+        return(self.ontology_check_truth(user_input))
+
 
   
     def check_if_in_ontology(self, pattern, arg1, arg2):
