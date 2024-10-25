@@ -8,11 +8,11 @@ import re
 
 class OntologyCheck:
     symptoms = '(?:an |a )?(\w*(?: \w*)?)(?: and (?:an |a )?(\w*(?: \w*)?))+'
-    sport = '(?:play |perform )?(.*)'
-    sporting = '(?:playing |performing|do )?(.*)'
+    sport = '(?:play |perform |do )?(.*)'
+    sporting = '(?:playing |performing |do )?(.*)'
 
     Recipe_by_Health = (re.compile('Does eating (.*) cause (.*)\?'), 'Recipe_by_Health')
-    not_Sport_and_Sport = (re.compile(f'Can not being able to do {sporting} be caused by {sporting}\?'), 'not_Sport_and_Sport')
+    not_Sport_and_Sport = (re.compile(f'Can not being able to {sport} be caused by {sporting}\?'), 'not_Sport_and_Sport')
     Sport_promotes_over_Sport = (re.compile(f'Does {sporting} provide any health benefit that is not provided by {sporting}\?'), ) 
     Recipe_fuels_Sport = (re.compile(f'Does (.*) provide the required nutrients for {sporting}\?'), 'Sport_promotes_over_Sport')
     Allergy_eat_Recipe = (re.compile(f'Can someone with (?:an|a) (.*) eat (.*)\?'), 'Allergy_eat_Recipe')
@@ -38,7 +38,7 @@ class OntologyCheck:
                 else: 
                     arg2 = '_'.join(p.groups()[1].split(' '))
                 if self.check_if_in_ontology(pattern[1], arg1, arg2):
-                    if verbose: print(pattern[1])
+                    if verbose: print('>>>QUERY:', pattern[1], arg1, arg2)
                     return query_functions[pattern[1]](self.graph, arg1, arg2)
         raise ValueError(f"Unknown query: {user_input}")
 

@@ -120,7 +120,6 @@ def recipe_by_health(ontology_graph, recipe: str, condition: str): #! in report:
 
 
 def not_sport_and_sport(ontology_graph, not_sport: str, sport: str):
-    print('>>>', f'{sport} causes not {not_sport}')
     query = f"""
         SELECT ?condition
         WHERE {{
