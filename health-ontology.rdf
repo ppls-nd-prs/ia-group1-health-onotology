@@ -1237,6 +1237,7 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta_bolognese">
         <rdf:type rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#Mediterranean"/>
         <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#beef50g"/>
+        <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#cheese33g"/>
         <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#pasta75g"/>
         <ontology:hasFood rdf:resource="http://www.semanticweb.org/uu/ia/group1/health/ontology#tomato83g"/>
     </owl:NamedIndividual>

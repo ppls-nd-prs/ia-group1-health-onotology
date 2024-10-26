@@ -1,7 +1,8 @@
+import sys
+
 from src.llm_check import llm_check_truth
 from src.ontology_check import OntologyCheck
 from src.utils import IsTruth
-import sys 
 
 
 def sense_user_input() -> str:
@@ -43,8 +44,9 @@ def choose_appropriate_response(is_true_llm: IsTruth, is_true_ontology: IsTruth)
     return "\n".join(response)
 
 
-def main(verbose = False):
-    if verbose: print('verbose')
+def main(verbose=False):
+    if verbose:
+        print("verbose")
     ontology = OntologyCheck()
     while True:
         user_input = sense_user_input()
@@ -52,14 +54,13 @@ def main(verbose = False):
             break
         is_true_llm = llm_check_truth(user_input)
         is_true_ontology = ontology.ontology_check_truth(user_input, verbose)
-        if not is_true_ontology:
-            continue
+
         response = choose_appropriate_response(is_true_llm, is_true_ontology)
         print(response)
 
 
 if __name__ == "__main__":
-    if len(sys.argv)>1:
+    if len(sys.argv) > 1:
         main(sys.argv[1])
-    else: 
+    else:
         main()
