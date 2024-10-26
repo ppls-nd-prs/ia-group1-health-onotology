@@ -80,18 +80,26 @@ class OntologyCheck:
 
     def check_if_in_ontology(self, pattern, arg1, arg2, verbose=False):
         classes = re.findall(r"[A-Z][a-z]*", pattern)
-
         for potential_instance, class_name in zip([arg1, arg2], classes):
             if verbose:
                 print(">>>CHECKING:", potential_instance, class_name)
-
-            a_ont = URIRef(self.prefix + potential_instance)
-            if (a_ont, RDF.type, None) not in self.graph:
-                print(
-                    f"There is no knowledge available about {potential_instance}. "
-                    "To perform any reasoning about this concept, the ontology should be updated."
-                )
-                return False
+            if type(potential_instance) == list:
+                for elem in potential_instance: 
+                    a_ont = URIRef(self.prefix + elem)
+                    if (a_ont, RDF.type, None) not in self.graph:
+                        print(
+                            f"There is no knowledge available about {elem}. "
+                            "To perform any reasoning about this concept, the ontology should be updated."
+                        )
+                        return False
+            else:
+                a_ont = URIRef(self.prefix + potential_instance)
+                if (a_ont, RDF.type, None) not in self.graph:
+                    print(
+                        f"There is no knowledge available about {potential_instance}. "
+                        "To perform any reasoning about this concept, the ontology should be updated."
+                    )
+                    return False
             # TODO fix this
             # c_ont = URIRef(self.prefix + c)
             # if not (a_ont, RDF.type, c_ont) in self.graph:
