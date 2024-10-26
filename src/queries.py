@@ -74,9 +74,11 @@ def generic_query(
     verbose=False,
 ):
     result = run_query(ontology_graph, query, verbose)
+
     if verbose:
         print(">>>", result)
     if len(result) > 0:
+        result = [", ".join(item) for item in result]
         formatted_positive_explanation = positive_explanation.format(*result).replace(
             "_", " "
         )

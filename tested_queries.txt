@@ -10,10 +10,10 @@ X: not working properly (should output Y/N)
     - Does playing field hockey provide any health benefit that is not provided by running? N
 - Does ramen provide the required nutrients for weight lifting? Y
     - Does chicken curry provide the required nutrients for running? Y
-- Can someone with an egg allergy eat ramen? X (Y)
-    - Can someone with a gluten allergy eat pasta bolognese? X (Y)
-    - Can someone with a lactose allergy eat pasta bolognese? X (N)
-- Does eating tagine help against dizziness and a fever? X (Y)
+- Can someone with an egg allergy eat ramen? Y
+    - Can someone with a gluten allergy eat pasta bolognese? Y
+    - Can someone with a lactose allergy eat pasta bolognese? N
+- Does eating tagine help against dizziness and a fever? Y
 - Is it possible that you are able to play soccer with dizziness and a fever? N
     - Is it possible that you are able to do walking with dizziness? Y
 
