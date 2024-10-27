@@ -13,7 +13,7 @@ class OntologyCheck:
 
     symptoms = "(?:an |a )?(\w*(?: \w*)?)(?: and (?:an |a )?(\w*(?: \w*)?))?"  #!in report: 1-2 symptoms
     sport = "(?:play |perform |do )?(.*)"
-    sporting = "(?:playing |performing |do )?(.*)"
+    sporting = "(?:playing |performing |doing )?(.*)"
 
     Recipe_by_Health = (re.compile("Does eating (.*) cause (.*)\?"), "Recipe_by_Health")
     not_Sport_and_Sport = (
