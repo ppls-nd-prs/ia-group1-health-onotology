@@ -98,7 +98,10 @@ class OntologyCheck:
                 print(">>>CHECKING:", potential_instance, class_name)
             if type(potential_instance) == list:
                 for elem in potential_instance:
-                    return check_instance(elem, class_name)
-            return check_instance(potential_instance, class_name)
+                    if not check_instance(elem, class_name):
+                        return False
+            else:
+                if not check_instance(potential_instance, class_name):
+                    return False
 
         return True
