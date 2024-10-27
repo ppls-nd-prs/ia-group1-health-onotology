@@ -1,0 +1,42 @@
+Press Enter to continue...
+Enter your input: Does eating pasta bolognese cause high cholesterol?
+A trustworthy source says this is true because high cholesterol might be caused by saturated fat which is contained in beef50g, cheese33g which is an ingredient in pasta bolognese.
+A less trustworthy source says this is false because The claim that eating pasta bolognese causes high cholesterol is not entirely accurate. While the bolognese sauce, which typically contains ground meat, can be high in saturated fat and cholesterol, the pasta itself does not directly contribute to high cholesterol levels..
+Therefore, we can conclude that the statement is true.
+
+Press Enter to continue...
+Enter your input: Can not being able to do walking be caused by playing field hockey?
+A trustworthy source says this is true because a(n) ankle sprain can be caused by field hockey and prevents doing any walking.
+A less trustworthy source says this is false because The statement "Can not being able to do walking be caused by playing field hockey?" does not make logical sense. Being unable to walk is not typically caused by playing field hockey. The statement is grammatically incorrect and does not present a coherent claim that can be evaluated as true or false. Without a clear and understandable statement, it is not possible to determine if it is true or false..
+Therefore, we can conclude that the statement is true.
+
+Press Enter to continue...
+Enter your input: Does walking provide any health benefit that is not provided by weight lifting?
+A trustworthy source says this is true because stamina is promoted by walking but not by weight lifting.
+A less trustworthy source says this is true because Walking and weight lifting provide different health benefits, so walking can provide some health benefits that are not provided by weight lifting alone..
+Therefore, we can conclude that the statement is true.
+
+Press Enter to continue...
+Enter your input: Does ramen provide the required nutrients for weight lifting?
+A trustworthy source says this is true because weight lifting decreases protein and ramen contains tofu33g which contains protein.
+A less trustworthy source says this is false because Ramen noodles are not a complete or optimal source of nutrients for individuals engaged in weight lifting. While ramen may provide some carbohydrates and calories, it is typically deficient in key nutrients like protein, essential fatty acids, vitamins, and minerals that are crucial for muscle building and recovery during weight lifting. A balanced diet with a variety of whole foods, including lean proteins, complex carbohydrates, and healthy fats, would be more appropriate to support the nutritional needs of individuals engaged in weight lifting..
+Therefore, we can conclude that the statement is true.
+
+Press Enter to continue...
+Enter your input: Can someone with an egg allergy eat ramen?
+A trustworthy source says this is true because all ingredients in ramen are safe for a(n) egg allergy, with the following swaps: egg_noodles75g --> rice_noodles133g.
+A less trustworthy source says this is true because Someone with an egg allergy can generally eat ramen, as traditional ramen noodles do not contain eggs. Ramen is typically made from wheat flour, water, and salt. Some varieties may contain additional ingredients like vegetable oils or flavorings, but eggs are not a common ingredient in standard ramen noodles. However, it's important to always check the specific ingredients and preparation of the ramen dish, as some restaurants or brands may add egg-based components, such as an egg-based broth or toppings. In those cases, the ramen would not be suitable for someone with an egg allergy. Overall, with proper ingredient verification, individuals with an egg allergy can safely consume ramen..
+Therefore, we can conclude that the statement is true.
+
+Press Enter to continue...
+Enter your input: Does eating tagine help against dizziness and a fever?
+A trustworthy source says this is true because influenza has symptom(s) dizziness, fever. tagine helps with this because it has fiber.
+A less trustworthy source says this is false because There is no scientific evidence that eating tagine, a North African dish made with meat, vegetables, and spices, can help against dizziness and fever. Dizziness and fever are symptoms that can have a variety of underlying causes, and the specific ingredients in tagine are not known to have any proven medicinal properties to treat these conditions. While a healthy, balanced diet can support overall well-being, there is no direct link between consuming tagine and alleviating dizziness or fever..
+Therefore, we can conclude that the statement is true.
+
+Press Enter to continue...
+Enter your input: Is it possible that you are able to play soccer with dizziness and a fever?
+A trustworthy source says this is false because there is no condition with dizziness, fever as symptopms that still lets you do soccer.
+A less trustworthy source says this is false because The statement "Is it possible that you are able to play soccer with dizziness and a fever?" is false. Playing soccer while experiencing dizziness and fever would be extremely difficult, if not impossible, due to the physical and cognitive impairments caused by these conditions. Dizziness can make it challenging to maintain balance and coordination, while a fever can lead to fatigue, weakness, and decreased physical and mental performance. Therefore, it is highly unlikely that someone would be able to play soccer effectively while suffering from these symptoms..
+Therefore, we can conclude that the statement is false.
+Press Enter to continue...

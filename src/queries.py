@@ -24,10 +24,13 @@ def run_query(ontology_graph, query: str, verbose=False) -> list:
     for arg in list_result:
         cleaned_arg = []
         for item in arg:
+            print(item, cleaned_arg)
             item = str(item)
             if item.startswith("health-ontology."):
-                cleaned_arg.append(item.split("health-ontology.", 1)[1])
-            else:
+                cleaned_item = item.split("health-ontology.", 1)[1]
+                if not cleaned_item in cleaned_arg:
+                    cleaned_arg.append(cleaned_item)
+            elif not item in cleaned_arg:
                 cleaned_arg.append(item)
         cleaned_result.append(cleaned_arg)
 
@@ -220,7 +223,7 @@ def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str, verbose=False)
         ]
         allergy_type = allergy.split("_")[0]
         positive_explanation = (
-            f"All ingredients in {recipe} are safe for {allergy_type} allergy"
+            f"all ingredients in {recipe} are safe for a(n) {allergy_type} allergy"
         )
         if swaps:
             positive_explanation += f", with the following swaps: {', '.join(swaps)}"
@@ -228,7 +231,7 @@ def allergy_eat_recipe(ontology_graph, allergy: str, recipe: str, verbose=False)
 
     unsafe_ingredients = recipe_ingredients - safe_ingredients
     allergy_type = allergy.split("_")[0]
-    negative_explanation = f"{recipe} contains {', '.join(unsafe_ingredients)} which triggers a {allergy_type} allergy and has no safe substitutes"
+    negative_explanation = f"{recipe} contains {', '.join(unsafe_ingredients)} which triggers a(n) {allergy_type} allergy and has no safe substitutes"
     return IsTruth(False, negative_explanation)
 
 
