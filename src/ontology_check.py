@@ -76,19 +76,20 @@ class OntologyCheck:
                     if verbose:
                         print(">>>QUERY:", pattern[1], arg1, arg2)
                     return query_functions[pattern[1]](self.graph, arg1, arg2, verbose)
-        print("Unknown query, please try again.")
+
         return IsTruth(None, "Unknown query, please try again.")
 
     def check_if_in_ontology(self, pattern, arg1, arg2, verbose=False):
         def check_instance(instance, class_name):
-            instance = self.health_ontology.search(
+            instance_check = self.health_ontology.search(
                 is_a=self.health_ontology[class_name], iri=f"*{instance}"
             )
-            if len(instance) == 0:
-                print(
-                    f"There is no knowledge available about {instance}. "
-                    "To perform any reasoning about this concept, the ontology should be updated."
-                )
+            if len(instance_check) == 0:
+                if verbose:
+                    print(
+                        f"There is no knowledge available about {class_name} {instance}. "
+                        "To perform any reasoning about this concept, the ontology should be updated."
+                    )
                 return False
             return True
 
