@@ -26,10 +26,8 @@ def run_query(ontology_graph, query: str, verbose=False) -> list:
         for item in arg:
             item = str(item)
             if item.startswith("health-ontology."):
-                cleaned_item = item.split("health-ontology.", 1)[1]
-                if not cleaned_item in cleaned_arg:
-                    cleaned_arg.append(cleaned_item)
-            elif not item in cleaned_arg:
+                cleaned_arg.append(item.split("health-ontology.", 1)[1])
+            else:
                 cleaned_arg.append(item)
         cleaned_result.append(cleaned_arg)
 
