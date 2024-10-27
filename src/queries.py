@@ -24,7 +24,6 @@ def run_query(ontology_graph, query: str, verbose=False) -> list:
     for arg in list_result:
         cleaned_arg = []
         for item in arg:
-            print(item, cleaned_arg)
             item = str(item)
             if item.startswith("health-ontology."):
                 cleaned_item = item.split("health-ontology.", 1)[1]
